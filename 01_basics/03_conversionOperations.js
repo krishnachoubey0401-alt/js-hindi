@@ -28,41 +28,16 @@ let stringNumber = String(someNumber)
 // console.log(typeof stringNumber);
 
 // *********************** Operations ***********************
-
-let value = 3
-let negValue = -value
+let value = 3;
+let negValue = -value;
 // console.log(negValue);
 
-// console.log(2+2);
-// console.log(2-2);
-// console.log(2*2);
-// console.log(2**3);
-// console.log(2/3);
-// console.log(2%3);
+// console.log(2%3);            output: 
+// console.log("2" + 2 + 2);    
+// console.log(2 + 2 + "2");     
+// console.log(2+"2"+2);
+// output: 222  => esa isliye hota hai kyuki jo javascript ki guidelines hai inme jo datatype pehle ata 
+// hai us ke hisaab se solution hota hai jese pehle string thi to 222 agya fir number tha to addition 
+// hogya or last pehla no. then string then no. to no. me string or str me no. bas attach ho gye
 
-let str1 = "hello"
-let str2 = " hitesh"
 
-let str3 = str1 + str2
-// console.log(str3);
-
-// console.log("1" + 2);
-// console.log(1 + "2");
-// console.log("1" + 2 + 2);
-// console.log(1 + 2 + "2");
-
-// console.log( (3 + 4) * 5 % 3);
-
-// console.log(+true);
-// console.log(+"");
-
-let num1, num2, num3
-
-num1 = num2 = num3 = 2 + 2
-
-let gameCounter = 100
-++gameCounter;
-console.log(gameCounter);
-
-// link to study
-// https://tc39.es/ecma262/multipage/abstract-operations.html#sec-type-conversion
