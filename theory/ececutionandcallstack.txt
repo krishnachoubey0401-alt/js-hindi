@@ -1,0 +1,521 @@
+/*
+==========================================================
+        HOW JAVASCRIPT EXECUTES CODE + CALL STACK
+==========================================================
+
+
+1. WHAT IS AN EXECUTION CONTEXT?
+----------------------------------------------------------
+
+Execution Context is the environment in which JavaScript
+runs and executes our code.
+
+In simple words:
+
+"Execution Context = the place/environment where JS
+executes code."
+
+
+There are mainly two things we need to understand:
+
+1. Global Execution Context
+2. Function Execution Context
+
+
+==========================================================
+2. GLOBAL EXECUTION CONTEXT
+==========================================================
+
+When JavaScript starts running our program, it first
+creates a Global Execution Context.
+
+Example:
+
+var name = "Rahul";
+
+function greet() {
+    console.log("Hello");
+}
+
+console.log(name);
+
+
+JavaScript first creates:
+
+Global Execution Context
+        ↓
+Then our code starts executing.
+
+
+==========================================================
+3. TWO PHASES OF EXECUTION
+==========================================================
+
+The Global Execution Context is commonly explained
+in TWO phases:
+
+1. Memory Creation Phase
+2. Execution Phase
+
+
+----------------------------------------------------------
+MEMORY CREATION PHASE
+----------------------------------------------------------
+
+In this phase, JavaScript prepares memory for variables
+and functions.
+
+Example:
+
+var a = 10;
+
+function add() {
+    console.log("Hello");
+}
+
+
+Conceptually:
+
+a   → undefined
+
+add → function definition
+
+
+Important:
+
+var → initially gets undefined
+
+function declaration → function definition is available
+
+
+For let and const:
+
+They are created but cannot be accessed before their
+declaration because of the Temporal Dead Zone (TDZ).
+
+
+----------------------------------------------------------
+EXECUTION PHASE
+----------------------------------------------------------
+
+Now JavaScript actually executes the code.
+
+Example:
+
+var a = 10;
+
+During execution:
+
+a → 10
+
+
+Then if JavaScript finds:
+
+console.log(a);
+
+It executes it and gives:
+
+10
+
+
+So simply remember:
+
+Memory Phase
+→ Prepare things
+
+Execution Phase
+→ Execute things
+
+
+==========================================================
+4. FUNCTION EXECUTION CONTEXT
+==========================================================
+
+Whenever we CALL a function, JavaScript creates a new
+Function Execution Context for that function call.
+
+Example:
+
+function add(a, b) {
+    return a + b;
+}
+
+add(2, 3);
+
+
+When:
+
+add(2, 3)
+
+is called, a new Function Execution Context is created.
+
+Inside it:
+
+a → 2
+b → 3
+
+Then:
+
+a + b
+
+→ 5
+
+The function returns 5.
+
+After the function finishes, its execution context is
+removed from the active execution process.
+
+
+==========================================================
+5. CALL STACK
+==========================================================
+
+The Call Stack keeps track of which functions are
+currently being executed.
+
+It follows:
+
+LIFO
+
+Last In → First Out
+
+
+Think of a stack of plates.
+
+The last plate you put on top is the first plate
+you take off.
+
+
+Example:
+
+function one() {
+    two();
+}
+
+function two() {
+    three();
+}
+
+function three() {
+    console.log("Hello");
+}
+
+one();
+
+
+Execution:
+
+one()
+  ↓
+two()
+  ↓
+three()
+
+
+Call Stack becomes:
+
+        ┌─────────────┐
+        │  three()    │  ← Last In
+        ├─────────────┤
+        │   two()     │
+        ├─────────────┤
+        │   one()     │
+        ├─────────────┤
+        │   Global    │
+        └─────────────┘
+
+
+three() finishes first:
+
+        ┌─────────────┐
+        │   two()     │
+        ├─────────────┤
+        │   one()     │
+        ├─────────────┤
+        │   Global    │
+        └─────────────┘
+
+
+Then two() finishes:
+
+        ┌─────────────┐
+        │   one()     │
+        ├─────────────┤
+        │   Global    │
+        └─────────────┘
+
+
+Then one() finishes:
+
+        ┌─────────────┐
+        │   Global    │
+        └─────────────┘
+
+
+==========================================================
+6. COMPLETE FLOW
+==========================================================
+
+When JavaScript executes code:
+
+JavaScript starts
+       ↓
+Global Execution Context created
+       ↓
+Memory / Creation Phase
+       ↓
+Execution Phase
+       ↓
+Function is called?
+       ↓
+New Function Execution Context created
+       ↓
+Function is pushed onto Call Stack
+       ↓
+Function executes
+       ↓
+Function returns
+       ↓
+Function is removed from Call Stack
+       ↓
+JavaScript continues execution
+
+
+==========================================================
+7. SIMPLE COMPLETE EXAMPLE
+==========================================================
+
+var username = "Rahul";
+
+function greet(name) {
+    var message = "Hello " + name;
+    sayMessage(message);
+}
+
+function sayMessage(message) {
+    console.log(message);
+}
+
+greet(username);
+
+
+Flow:
+
+Global Execution Context
+        ↓
+username is prepared
+greet is prepared
+sayMessage is prepared
+        ↓
+username = "Rahul"
+        ↓
+greet(username)
+        ↓
+greet() Execution Context created
+        ↓
+name = "Rahul"
+message = "Hello Rahul"
+        ↓
+sayMessage(message)
+        ↓
+sayMessage() Execution Context created
+        ↓
+console.log()
+        ↓
+sayMessage() finishes
+        ↓
+sayMessage() removed
+        ↓
+greet() finishes
+        ↓
+greet() removed
+        ↓
+Global execution continues
+
+
+==========================================================
+8. WHAT IS STACK OVERFLOW?
+==========================================================
+
+If a function keeps calling itself without stopping,
+the Call Stack keeps growing.
+
+Example:
+
+function test() {
+    test();
+}
+
+test();
+
+
+Stack:
+
+test()
+test()
+test()
+test()
+test()
+...
+...
+
+
+Eventually JavaScript cannot add more calls and gives:
+
+Maximum call stack size exceeded
+
+
+This is called Stack Overflow.
+
+
+==========================================================
+9. HOW TO SEE THE CALL STACK IN BROWSER
+==========================================================
+
+Open:
+
+Chrome
+  ↓
+Inspect
+  ↓
+Sources
+  ↓
+Write your JavaScript
+  ↓
+Put a breakpoint
+  ↓
+Run the code
+
+
+When JavaScript pauses at the breakpoint, you can see
+the Call Stack.
+
+For example:
+
+three()
+two()
+one()
+Global
+
+
+This tells us:
+
+three() was called by two()
+two() was called by one()
+one() was called from Global code
+
+
+==========================================================
+10. INTERVIEW QUESTION
+==========================================================
+
+INTERVIEWER:
+
+"How does JavaScript execute code?"
+
+
+ANSWER:
+
+"JavaScript first creates a Global Execution Context.
+The code is commonly explained in two phases: the
+Memory Creation Phase and the Execution Phase.
+
+During the memory phase, JavaScript prepares variables
+and function declarations. Then during the execution
+phase, the code is actually executed.
+
+Whenever a function is called, JavaScript creates a new
+Function Execution Context for that function.
+
+These execution contexts are managed by the Call Stack,
+which follows the LIFO, Last In First Out, principle.
+
+When the function finishes, its execution context is
+removed from the Call Stack and JavaScript continues
+executing the remaining code."
+
+
+==========================================================
+11. VERY SHORT INTERVIEW ANSWER
+==========================================================
+
+If the interviewer wants a short answer:
+
+"JavaScript executes code using Execution Contexts.
+First, the Global Execution Context is created.
+The code is prepared and then executed.
+
+Whenever a function is called, a new Function Execution
+Context is created and pushed onto the Call Stack.
+
+The Call Stack follows LIFO — Last In, First Out.
+When a function finishes, it is removed from the stack."
+
+
+==========================================================
+12. MOST IMPORTANT THINGS TO REMEMBER
+==========================================================
+
+Execution Context
+→ Environment where JavaScript executes code.
+
+Global Execution Context
+→ Created when the JavaScript program starts.
+
+Function Execution Context
+→ Created whenever a function is called.
+
+Memory Creation Phase
+→ JavaScript prepares variables/functions.
+
+Execution Phase
+→ JavaScript executes the actual code.
+
+Call Stack
+→ Keeps track of function execution.
+
+LIFO
+→ Last In, First Out.
+
+Function finishes
+→ Its execution context is removed from the stack.
+
+
+==========================================================
+ONE-LINE MEMORY TRICK
+==========================================================
+
+CODE
+ ↓
+GLOBAL EXECUTION CONTEXT
+ ↓
+MEMORY PHASE
+ ↓
+EXECUTION PHASE
+ ↓
+FUNCTION CALL
+ ↓
+FUNCTION EXECUTION CONTEXT
+ ↓
+CALL STACK
+ ↓
+FUNCTION FINISHES
+ ↓
+POP FROM STACK
+
+
+==========================================================
+FINAL CONCEPT
+==========================================================
+
+The easiest way to understand the entire topic is:
+
+"Execution Context tells JavaScript WHERE and in what
+environment code is being executed.
+
+The Call Stack tells JavaScript WHICH function is
+currently being executed and keeps track of function
+calls using LIFO."
+
+
+*/
