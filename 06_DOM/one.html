@@ -1,0 +1,335 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>DOM learning</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div >
+        <h1  id="title" class="heading">DOM learning on Chai aur code <span style="display: none;">test text</span></h1>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <input type="password" name="" id="">
+
+        <ul>
+            <li class="list-item">one</li>
+            <li class="list-item">two</li>
+            <li class="list-item">three</li>
+            <li class="list-item">four</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+/*
+
+/*
+1. document.getElementById('title')
+
+DOM mein jis element ki id "title" hai, us element ko find karke return karta hai.
+Yaani ID ke through directly element ko select karne ke kaam aata hai.
+
+
+2. document.getElementById('title').id
+
+Pehle "title" ID wale element ko select karta hai, phir us element ki id ki value return karta hai.
+Agar element ki id "title" hai to output "title" milega.
+
+
+3. document.getElementById('title').class
+
+Element ki class ko .class se access karne ki koshish karta hai, lekin DOM mein class ke liye
+.class property nahi hoti, isliye undefined milta hai.
+
+
+4. document.getElementById('title').className
+
+Selected element ki className property ki value return karta hai.
+Agar element ke paas "heading" class hai to "heading" return hoga.
+
+
+5. document.getElementById('title').getAttribute('id')
+
+Pehle element ko select karta hai, phir uske "id" attribute ki current value return karta hai.
+Yaani kisi selected element ke attribute ki value read karne ke liye use hota hai.
+
+
+6. document.getElementById('title').getAttribute('class')
+
+Selected element ke "class" attribute ki current value return karta hai.
+Multiple classes hone par unki values ek string mein milti hain.
+
+
+7. document.getElementById('title').getAttribute('className')
+
+HTML mein class ka attribute naam "class" hota hai, "className" nahi.
+Isliye "className" naam ka attribute na milne par null return hota hai.
+
+
+8. document.getElementById('title').setAttribute('class', 'test')
+
+Selected element ke "class" attribute ki value ko "test" se set karta hai.
+Agar pehle koi classes hain to ye unhe replace kar deta hai.
+
+
+9. document.getElementById('title').setAttribute('class', 'test heading')
+
+Selected element ke class attribute mein "test heading" set karta hai.
+Space ke through multiple classes ek saath set ki ja sakti hain.
+
+
+10. const title = document.getElementById('title')
+
+"title" variable ke andar title ID wala element store karta hai.
+Iske baad baar-baar getElementById() likhne ki zarurat nahi hoti; "title" se directly element access kar sakte hain.
+
+
+11. title.style.backgroundColor = "green"
+
+Selected element ki inline CSS backgroundColor property ko "green" set karta hai.
+JavaScript mein CSS property background-color ko camelCase mein backgroundColor likhte hain.
+
+
+12. title.style.padding = "15px"
+
+Selected element ki inline padding ko 15px set karta hai.
+Isse element ke content aur uski boundary ke beech space add hota hai.
+
+
+13. title.style.borderRadius = "15px"
+
+Selected element ke border ke corners ko 15px round karta hai.
+CSS ki border-radius property JavaScript mein borderRadius ke naam se access hoti hai.
+
+
+14. title.innertext
+
+Property ka naam galat hai kyunki JavaScript mein innerText mein "T" capital hota hai.
+Isliye title.innertext se undefined milta hai.
+
+
+15. title.innerText
+
+Selected element ke visible text ko return karta hai.
+Jo text page par visible hai, generally wahi text milta hai.
+
+
+16. title.textContent
+
+Selected element ke andar ka complete text content return karta hai.
+Isme hidden elements ka text bhi include ho sakta hai.
+
+
+17. title.innerHTML
+
+Selected element ke andar ka complete HTML return karta hai.
+Isme text ke saath andar ke HTML tags bhi milte hain.
+
+
+18. document.querySelector('h1')
+
+CSS selector ka use karke page ka pehla matching <h1> element select karta hai.
+querySelector hamesha first matching element return karta hai.
+
+
+19. document.querySelector('title')
+
+Page ka pehla matching <title> element select karta hai.
+Yahan selector directly HTML tag name hai.
+
+
+20. document.querySelector('#title')
+
+CSS mein # ID ko represent karta hai.
+Isliye #title page par id="title" wale pehle element ko select karta hai.
+
+
+21. document.querySelector('.heading')
+
+CSS mein . class ko represent karta hai.
+Isliye .heading page par class="heading" wale pehle element ko select karta hai.
+
+
+22. document.querySelector('input[type="Password"]')
+
+CSS attribute selector ke through input element ko select karta hai jiska type attribute
+Password hai. Agar matching element nahi milta to null return karta hai.
+*/
+/*
+1. document.querySelector('.heading')
+
+Class "heading" wala pehla matching element select karta hai.
+Yahan output mein <h1> element mila.
+
+
+2. document.querySelector('ul')
+
+Page ka pehla <ul> element select karta hai.
+
+
+3. const bgkala = document.querySelector('ul')
+
+<UL> element ko "bgkala" variable mein store karta hai,
+taaki baad mein bgkala se us element ko access karke style change kar sakein.
+
+
+4. bgkala.style.backgroundClip = "green"
+
+Selected <ul> ki backgroundClip CSS property ko "green" set karne ki koshish karta hai.
+Lekin backgroundClip color set karne ke liye nahi hota; background color ke liye backgroundColor use hota hai.
+
+
+5. bgkala.style.backgroundColor = "green"
+
+Selected <ul> ka background color green set karta hai.
+
+
+6. bgkala.style.Color = "#212121"
+
+JavaScript mein CSS property "Color" nahi, lowercase "color" hoti hai.
+Sahi property: bgkala.style.color
+
+
+7. bgkala.style.color = "#212121"
+
+Selected <ul> ke text ka color #212121 set karta hai.
+
+
+8. document.querySelectorAll('li')
+
+Page ke saare matching <li> elements select karta hai.
+Iska result NodeList hota hai, jisme saare matching elements index ke through stored hote hain.
+
+
+9. const tempLiList = document.querySelectorAll('li')
+
+Saare <li> elements ki NodeList ko "tempLiList" variable mein store karta hai.
+
+
+10. tempLiList[0].style.color = "white"
+
+NodeList ke index 0 wale <li> ko select karke uska text color white karta hai.
+
+[0] ka matlab first element hota hai.
+
+
+11. const myH1 = document.querySelectorAll('ul')
+
+Saare matching <ul> elements ki NodeList ko "myH1" variable mein store karta hai.
+Variable ka naam myH1 hai, lekin andar <ul> elements stored hain.
+
+
+12. myH1
+
+myH1 ke andar stored NodeList ko show karta hai.
+Agar ek <ul> hai to NodeList(1) milega.
+
+
+13. myH1.style.color = "green"
+
+Yahan error aata hai kyunki querySelectorAll() ek single element nahi,
+balki NodeList return karta hai.
+
+NodeList par directly .style nahi laga sakte.
+
+
+14. myH1[0].style.color = "green"
+
+NodeList ke first element ko [0] se select karta hai,
+phir us element ka text color green karta hai.
+
+
+15. const myH1 = document.querySelectorAll('h1')
+
+Page ke saare <h1> elements ki NodeList ko myH1 mein store karta hai.
+
+
+16. myH1[0].style.color = "green"
+
+NodeList ke first <h1> element ko [0] se select karke uska text color green karta hai.
+
+
+IMPORTANT:
+
+querySelector()
+→ Ek matching element return karta hai, isliye direct .style use kar sakte hain.
+
+querySelectorAll()
+→ Saare matching elements ki NodeList return karta hai, isliye specific element ko
+access karne ke liye index [0], [1], [2] etc. dena padta hai.
+
+Example:
+document.querySelector('h1').style.color = "green"
+
+document.querySelectorAll('h1')[0].style.color = "green"
+
+[0] → first element
+[1] → second element
+[2] → third element
+*/
+/*
+getElementsByClassName()
+
+Class name ke basis par elements ko select karta hai.
+
+Example:
+document.getElementsByClassName('heading')
+
+Ye page ke saare elements jinki class "heading" hai, unhe HTMLCollection ke form mein return karta hai.
+
+Agar multiple elements milte hain, to unhe index se access kar sakte hain:
+
+document.getElementsByClassName('heading')[0]
+
+[0] → first matching element
+[1] → second matching element
+*/
+
+/*
+getElementsByClassName()
+
+Class name ke basis par multiple elements select karta hai
+aur HTMLCollection return karta hai, direct Array nahi.
+
+
+Example:
+
+const items = document.getElementsByClassName('heading')
+
+
+Agar in elements par forEach() lagana ho, pehle HTMLCollection ko Array mein convert kar sakte hain:
+
+Array.from(items).forEach((item) => {
+    item.style.color = "green"
+})
+
+Array.from()
+→ HTMLCollection ko Array mein convert karta hai.
+
+forEach()
+→ Array ke har element par given code run karta hai.
+
+
+Shortcut:
+
+[...items].forEach((item) => {
+    item.style.color = "green"
+})
+
+... spread operator HTMLCollection ke elements ko Array mein spread karta hai.
+*/
+
+
+
+
+*/ 
+
+
