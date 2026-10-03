@@ -1,0 +1,147 @@
+### Q1. What is JavaScript?
+
+
+// JavaScript is a high-level, dynamically typed programming language.
+// It is mainly used to make web pages interactive and dynamic.
+//
+// Dynamically typed means:
+// A variable's type can change depending on the value stored in it.
+
+let x = 10;       // Number
+x = "Hello";      // String
+```
+
+**Interview Answer:**
+JavaScript is a high-level, dynamically typed programming language used to make web
+ pages interactive and dynamic.
+
+
+### Q2. What are Data Types in JavaScript?
+
+// Data types tell us what kind of value a variable stores.
+//
+// JavaScript has 8 main data types:
+// String, Number, BigInt, Boolean,
+// Undefined, Null, Symbol, and Object.
+
+let name = "Rahul";  // String
+let age = 20;        // Number
+let isStudent = true; // Boolean
+
+**Interview Answer:**
+Data types define the type of value stored in a variable.
+
+
+### Q3. What is the difference between `var`, `let` and `const`?
+
+```js
+// var → Function scoped
+// let & const → Block scoped
+
+function test() {
+    var a = 10;
+    let b = 20;
+    const c = 30;
+}
+
+// var → Can be redeclared & reassigned
+var x = 10;
+var x = 20; // ✅
+
+x = 30;     // ✅
+
+
+// let → Cannot be redeclared, but can be reassigned
+let y = 10;
+// let y = 20; // ❌
+
+y = 30;       // ✅
+
+
+// const → Cannot be redeclared or reassigned
+const z = 10;
+// z = 20;     // ❌
+```
+
+**Interview Answer:**
+`var` is function-scoped, while `let` and `const` are block-scoped. `var` can be redeclared 
+and reassigned, `let` can be reassigned but not redeclared, and `const` can neither be 
+redeclared nor reassigned.
+
+
+### Q4. What is the difference between `==` and `===`?
+
+```js id="9q4x1k"
+// == → Checks only value
+// It can convert the type before comparing.
+
+5 == "5";       // ✅ true
+
+
+// === → Checks value AND data type
+// No type conversion is done.
+
+5 === "5";      // ❌ false
+```
+
+**Simple rule:**
+
+```js id="5k2j8m"
+5 == "5"        // true  → value same
+5 === "5"       // false → type different
+```
+
+**Interview Answer:**
+`==` compares values after type conversion, while `===` compares both value and data type without type conversion.
+
+**Interview Tip:**
+Usually prefer `===` because it gives more predictable results.
+
+### Q5. What is the difference between `null` and `undefined`?
+
+```js id="7p3m2x"
+// undefined → Variable is declared,
+// but no value is assigned.
+
+let a;
+console.log(a); // undefined
+
+
+// null → We intentionally assign "no value".
+
+let b = null;
+console.log(b); // null
+```
+
+**Simple rule:**
+
+```js id="q8x4na"
+undefined → Value is not assigned
+null      → We intentionally set no value
+```
+
+**Interview Answer:**
+`undefined` means a variable has been declared but has no value, while `null` is an intentional assignment that represents no value.
+
+**Interview Tip:**
+
+```js id="w2k7fd"
+typeof undefined; // "undefined"
+typeof null;      // "object" ⚠️
+```
+
+`typeof null` returning `"object"` is a historical JavaScript quirk.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
