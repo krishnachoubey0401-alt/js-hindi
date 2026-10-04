@@ -1,0 +1,259 @@
+# JavaScript Async / Await
+
+## 1. What is Async?
+
+`async` is a keyword used before a function to make it an **asynchronous function**.
+
+An `async` function **always returns a Promise**.
+
+```js
+async function test() {
+    return "Hello";
+}
+```
+
+Even though we return `"Hello"`, the function actually returns a **Promise**.
+
+---
+
+## 2. What is Await?
+
+`await` is used to **wait for a Promise to complete** and get its result.
+
+It is normally used inside an `async` function.
+
+```js
+async function getData() {
+    const result = await fetch(url);
+}
+```
+
+Here, JavaScript waits for `fetch()` to give its result before moving to the next line **inside that async function**.
+
+---
+
+## 3. Why do we use Async/Await?
+
+We use `async/await` mainly to handle **asynchronous operations** in a clean and readable way.
+
+Common examples:
+
+* API calls
+* `fetch()`
+* Database operations
+* File operations
+* Timers
+
+---
+
+## 4. Important Point
+
+`async/await` does **not** make JavaScript completely synchronous.
+
+`await` only pauses the execution of the **current async function**.
+
+It does not block the entire JavaScript program.
+
+---
+
+## 5. Async Function Returns a Promise
+
+```js
+async function test() {
+    return "Hello";
+}
+```
+
+`test()` returns:
+
+```js
+Promise
+```
+
+To get the value:
+
+```js
+test().then((result) => {
+    console.log(result);
+});
+```
+
+Output:
+
+```text
+Hello
+```
+
+---
+
+## 6. Async/Await with API
+
+```js
+async function getData() {
+
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    console.log(data);
+}
+```
+
+Flow:
+
+```text
+fetch()
+   ↓
+Promise
+   ↓
+await
+   ↓
+response
+   ↓
+response.json()
+   ↓
+data
+```
+
+---
+
+## 7. Error Handling
+
+Async operations can fail, so we commonly use `try...catch`.
+
+```js
+async function getData() {
+
+    try {
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        console.log(data);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+}
+```
+
+`try` → code that may fail
+
+`catch` → handles the error
+
+---
+
+# Interview Questions
+
+### Q1. What is async?
+
+**Answer:**
+`async` is a keyword used to make a function asynchronous. An async function always returns a Promise.
+
+### Q2. What is await?
+
+**Answer:**
+`await` is used to wait for a Promise to complete and get its result. It is normally used inside an async function.
+
+### Q3. Why do we use async/await?
+
+**Answer:**
+To handle asynchronous operations in a cleaner and more readable way.
+
+### Q4. What does an async function return?
+
+**Answer:**
+An async function always returns a Promise.
+
+### Q5. Does await block JavaScript?
+
+**Answer:**
+No. It only pauses the current async function. It does not block the whole JavaScript program.
+
+### Q6. How do you handle errors with async/await?
+
+**Answer:**
+Using `try...catch`.
+
+### Q7. What is the difference between Promise and async/await?
+
+**Answer:**
+A Promise represents the result of an asynchronous operation. `async/await` provides a cleaner way to work with Promises.
+
+---
+
+# Remember This
+
+```text
+async  →  makes a function asynchronous
+await  →  waits for a Promise result
+Promise → represents a future result
+try/catch → handles errors
+```
+
+**Main concept:**
+`async/await` is basically a cleaner way to work with **Promises**.
+
+
+// ===============================
+// ASYNC / AWAIT - SIMPLE NOTES
+// ===============================
+
+
+// 1. async
+// async keyword function ko asynchronous banata hai.
+// async function hamesha Promise return karta hai.
+
+
+// 2. await
+// await Promise ke result ka wait karta hai.
+// await normally async function ke andar use hota hai.
+
+
+// 3. Why async/await?
+// Asynchronous code ko simple aur readable banane ke liye.
+// Mostly API calls, fetch(), database etc. mein use hota hai.
+
+
+// 4. Important
+// await sirf current async function ko pause karta hai.
+// Ye poore JavaScript program ko block nahi karta.
+
+
+// 5. Error Handling
+// async/await ke saath errors handle karne ke liye
+// try...catch use karte hain.
+
+
+// 6. Interview Points
+//
+// async  -> function ko asynchronous banata hai
+// await  -> Promise ke result ka wait karta hai
+// Promise -> future result ko represent karta hai
+// try/catch -> errors handle karta hai
+
+
+// Example:
+
+async function getData() {
+
+    try {
+        const response = await fetch("API_URL");
+        const data = await response.json();
+
+        console.log(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// INTERVIEW ANSWER:
+//
+// "Async is used to make a function asynchronous.
+// An async function always returns a Promise.
+// Await is used to wait for the Promise result."
