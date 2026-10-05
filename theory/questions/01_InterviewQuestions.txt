@@ -132,6 +132,217 @@ typeof null;      // "object" ⚠️
 
 `typeof null` returning `"object"` is a historical JavaScript quirk.
 
+### Q1. What is the difference between Primitive and Reference Types?
+
+```js
+// Primitive → value ki copy banti hai
+let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a); // 10
+console.log(b); // 20
+
+
+// Reference → same object ka reference copy hota hai
+let user1 = { name: "Rahul" };
+let user2 = user1;
+
+user2.name = "Aman";
+
+console.log(user1.name); // Aman
+```
+
+**Interview Answer:**
+// Primitive values are copied independently,
+// while objects and arrays share a reference to the same data.
+
+// Primitive → Value copy
+// Reference → Reference copy
+
+```
+```
+### Q2. What is Shallow Copy?
+
+```js
+// Shallow Copy → ek new outer object banta hai,
+// but nested objects ka reference same reh sakta hai.
+
+const user1 = {
+  name: "Rahul",
+  address: {
+    city: "Bhopal"
+  }
+};
+
+const user2 = { ...user1 }; // Shallow Copy
+
+console.log(user1 === user2); // false
+// Outer objects different hain.
+
+// But:
+console.log(user1.address === user2.address); // true
+// Nested address object ka reference same hai.
+```
+
+**Interview Answer:**
+
+```js
+// Shallow copy creates a new outer object,
+// but nested objects can still share the same reference.
+
+// Common way:
+const copy = { ...original };
+```
+
+**Keyword:** `Shallow Copy` → `new outer object + shared nested references`
+### Q3. What is Deep Copy?
+
+```js
+// Deep Copy → ek completely independent copy banti hai.
+// Nested objects ka reference bhi alag hota hai.
+
+const user1 = {
+  name: "Rahul",
+  address: {
+    city: "Bhopal"
+  }
+};
+
+const user2 = structuredClone(user1); // Deep Copy
+
+console.log(user1 === user2); // false
+// Outer objects different hain.
+
+console.log(user1.address === user2.address); // false
+// Nested objects bhi different hain.
+
+user2.address.city = "Delhi";
+
+console.log(user1.address.city); // Bhopal
+console.log(user2.address.city); // Delhi
+```
+
+**Interview Answer:**
+
+```js
+// Deep copy creates a completely independent copy
+// including nested objects.
+
+const copy = structuredClone(original);
+```
+
+**Keyword:** `Deep Copy` → `completely independent copy + no shared nested references`
+### Q2. What is the difference between Shallow Copy and Deep Copy?
+
+**Interview Answer:**
+
+> A shallow copy creates a new object, but nested objects still share the same reference.
+ A deep copy creates a completely independent copy, including the nested objects.
+
+
+ ### Q3. What is Hoisting in JavaScript?
+
+```js
+// Hoisting ka matlab hai ki JavaScript execution se pehle
+// declarations ko process kar leta hai.
+
+console.log(a); // undefined
+
+var a = 10;
+```
+
+```js
+// JavaScript isko conceptually aise treat karta hai:
+
+var a;          // Declaration → hoisted
+
+console.log(a); // undefined
+
+a = 10;         // Assignment → baad mein hoti hai
+```
+
+```js
+// var a = 10 ke andar actually 2 parts hain:
+
+var a;   // Declaration
+a = 10;  // Assignment
+```
+
+**Interview Answer:**
+
+> Hoisting is a JavaScript behavior where variable and function declarations are processed before the execution of the code.
+
+**Keyword:** `Hoisting` → `Declarations are processed before execution`
+
+
+
+### Q4. What is Temporal Dead Zone (TDZ)?
+
+```js
+console.log(a); // ❌ ReferenceError
+
+let a = 10;
+```
+
+**Hinglish:**
+
+* TDZ = **Temporal Dead Zone**
+* `let` aur `const` variable ka scope start hone ke baad, declaration execute hone tak ka period **TDZ** hota hai.
+* Is period mein variable ko access karne par **ReferenceError** aata hai.
+
+```js
+console.log(a); // ❌ ReferenceError
+
+const a = 10;
+```
+
+**Interview Answer:**
+
+> The Temporal Dead Zone is the period between entering a scope and the execution of a `let` or `const` declaration, during which accessing the variable causes a ReferenceError.
+
+**Keyword:** `let/const` → TDZ → declaration se pehle access → `ReferenceError`
+
+```
+```
+### Q5. What is Execution Context in JavaScript?
+
+```js
+// Execution Context = environment in which JavaScript code is executed.
+
+// Every Execution Context mainly has 2 phases:
+
+// 1. Memory Creation Phase
+//    → Variables/functions ke liye memory allocate hoti hai.
+//    → var variables initially undefined hote hain.
+//    → Function declarations memory mein available hoti hain.
+
+// 2. Execution Phase
+//    → Code line-by-line execute hota hai.
+//    → Variables ko actual values assign hoti hain.
+//    → Function call hone par new Function Execution Context create hota hai.
+
+var x = 10;
+
+function test() {
+  var y = 20;
+  console.log(y);
+}
+
+test();
+```
+
+**Hinglish:**
+
+> Execution Context wo environment hai jisme JavaScript code ko execute kiya jata hai. Isme pehle Memory Creation Phase hota hai, phir Execution Phase.
+
+**Interview Answer:**
+
+> An Execution Context is the environment in which JavaScript code is evaluated and executed. It has two main phases: the Memory Creation Phase and the Execution Phase.
+
+
+
 
 
 
