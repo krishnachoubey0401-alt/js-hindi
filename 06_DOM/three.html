@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai-Or-Code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+  
+</body>
+<script>
+const div =  document.createElement('div'); // creating element 
+console.log(div);
+div.className = "main"
+div.id = Math.round(Math.random() * 10 + 1);// direct naam bhi de sakte the but library bhi use kr sakte hai
+// ab ye class or id pehle se hi set hote hai to jinko apan ko set karna padta hai unko alag se ese karte hai
+
+div.setAttribute("title", "generated title") // ye syntax hai pehle title likha matlab title likh sakte hai  
+div.innerText = "Hacker bolte " // set attribute log jyada prefer karte hai kyuki id ya attribute k andar
+//ye jo .classname / .innerhtml ye override krta hai values ko jo unse pehle se values rehti hai unko select krke lata hai fir unko select krta hai
+// but setattribute leke nhi ata  direct set krte hai 
+
+
+/* direct ek textnode create kr sakte hai apan yahan
+
+--->> to sabse pehle to create krna pdega
+-->  then usko div me append krna pdega 
+-->>  then us poore div ko hi apend krna pdega document me */
+
+const addText = document.createTextNode("Hacker Bolteey")
+div.appendChild(addText)
+
+document.body.appendChild(div);
+
+/*
+1. const div = document.createElement('div')
+
+Naya <div> element create karta hai aur div variable mein store karta hai.
+
+
+2. div.className = "main"
+
+Created div ki class "main" set karta hai.
+
+
+3. div.id = Math.round(Math.random() * 10 + 1)
+
+Div ki id ko random number se set karta hai.
+Math.random() random number deta hai aur Math.round() usko round number mein convert karta hai.
+
+
+4. div.setAttribute("title", "generated title")
+
+Div mein "title" attribute create/set karta hai aur uski value "generated title" rakhta hai.
+
+setAttribute() directly attribute ki value set karta hai.
+
+
+5. div.innerText = "Hacker bolte "
+
+Div ke andar text set karta hai.
+
+
+6. document.createTextNode("Hacker Bolteey")
+
+Ek separate text node create karta hai.
+Ye abhi sirf text node hai, page par automatically add nahi hua.
+
+
+7. div.appendChild(addText)
+
+Created text node ko div ke andar child ke form mein add karta hai.
+
+
+8. document.body.appendChild(div)
+
+Created div ko body ke andar child ke form mein add karta hai.
+
+Iske baad created div actual webpage par appear hota hai.
+*/
+
+</script>
+</html>
