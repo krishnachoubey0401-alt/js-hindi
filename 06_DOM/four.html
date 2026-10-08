@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+  
+  <ul class="language">
+    <li>Javascript</li>
+  </ul>
+
+</body>
+<script>
+// we are learning that how we can add items in DOM there are two or three ways 
+
+
+  function addLanguage(langName){  // ek function bnaya usme parameters liya yahan language add krni thi to language likha
+    const li = document.createElement('li'); // pehle ek list create ki matlab element kiya 
+    li.innerHTML = `${langName}` // list k andar jo language create krni thi wo pass ki
+    document.querySelector('.language').appendChild(li) // language class select krke uske andar uske child li ko append kr diya
+  }
+  addLanguage("java")
+  addLanguage("python")
+
+  // now this is not optimal yahan to ek do hi lang item create kr rhe hai yahan bar bar tree traverse krna pad rha hai agar 
+  // jyada element hue to problem hogi isliye optimise krege isko
+
+  function addOptiLanguage(langName){
+  const li = document.createElement('li');
+  li.appendChild(document.createTextNode(langName));
+  document.querySelector('.language').
+  appendChild(li);
+  }
+  addOptiLanguage("golang")
+<!-- sabse pehle ek func bnao parameter lo  then jo bi add karna hai uska element bnaoo -->
+<!-- fir us element me wo child append kro fir us element ko bhi apne parent ko select krke append krdo -->
+
+  // Now this is the optimised because isme hame baar bar tree traverse nhi karna padta jab bhi
+  // ham innerHTML use krte to internally har bar tree traveerse karna padta hai 
+  //lekin is tareeke se nhi karna padta 
+
+  //--------------EDIT------------------------------
+
+  // first select what we want to edit 
+
+  const secondLang = document.querySelector("li:nth-child(2)"); // li:nth-child(2) new methid hai is se n no. tak ka koi bhi child access kar sakte hai
+
+  //   secondLang.innerHTML = "c++" we know that isme tree traverse hota hai ptimised nhi hai but simple hai
+
+  const newli = document.createElement('li');
+  newli.textContent = "c++";
+  secondLang.replaceWith(newli);
+
+  // ye tareeka thoda thil hai 
+  // step 1. jis parent k jis bhi child ko edit krna hai sekect kro
+  // step 2. jo bhi replace krna hai wo uska nya element bnaoo
+  // step 3. nye element ko jahan store kiya hai usme nyi value do 
+  // step 4. last me uske sath replace kro by using replace method;
+
+  const firstLang = document.querySelector("li:first-child"); // first child select krke variable me hold
+  firstLang.outerHTML = '<li>typescript</li>' // us child k poora outer html hi alag kro replace krdo
+
+  //--------------------REMOVE--------------
+  // lets remove the last language name "golang"
+
+  //step1. select the element that we want to delete  and hold in a variable
+  //step2. use remove method to remove the element 
+
+  const lastLang = document.querySelector("li:last-child");
+  lastLang.remove(); // is method se lastLang me jo bhi hoga apne aap delete ho jayega 
+
+
+
+
+</script>
+</html>
