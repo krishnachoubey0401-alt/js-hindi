@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Krishnakant Choubey</h1>
+  <button id="stop">stop</button>
+</body>
+<script>
+ // setTimeout(handler: TimerHandler, timeout?: number, ...arguments: any[]): number
+ // is se ek timer lag jata hai ki itni der baad ye kaam kr dena iske andar hame ek handler
+ // define kra hai jo ki ek fun() hai bina naam ka call back hai ye likhne k baad , lagake 
+ // time bhi likhte hai ki kitne time baad execution krna hai jo function me likha hai
+
+//  setTimeout(function(){
+//   console.log("Kkant");
+//  },2000) // ese likha jata hai isko 
+
+// const sayKkant =  setTimeout(function(){
+//   console.log("Kkant");
+//  },2000); // ye bhi ek tareeka hai dono shi hai 
+
+// document.querySelector('h1').innerText = "kk" // isa krne se jo h1 k andar naam hai wo change ho jayega 
+// ab we want that ye kaam 2 sec baad ho then : 
+
+// setTimeout(function(){
+//   document.querySelector('h1').innerText = "kk"
+// }, 3000); // esa krne se ye kaam 3 sec baad hoga ab isko thoda readible bnate hai 
+
+const changeNAme = function(){
+  document.querySelector('h1').innerText = "kk" // isko ek variable me dala
+}
+
+// ab setTimeout ko call kr dege
+
+const timeout = setTimeout(changeNAme,2000); // ye thoda readable hai 
+
+// ab ham chahte hai ki ye nme change hone se pehle ham isko rok
+// de ya button click krde or ye ruk jaye to hamne padha tha eventlistner
+
+document.querySelector('#stop').
+addEventListener('click', function(){
+  clearTimeout(timeout);
+  console.log("Timeout Removed Successfully");
+}) 
+
+</script>
+</html>
