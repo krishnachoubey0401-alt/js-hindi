@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body id="bg">
+  <h1>Krishnakant Choubey</h1>
+  <button id="start">start</button>
+  <button id="stop">stop</button>
+</body>
+<script>
+
+ let timer;
+// const changeMe = function(){document.querySelector('h1').
+// innerHTML = "k kant Choubey";
+// }
+
+// const start = function(){
+// timer = setTimeout(changeMe, 3000);
+// // document.querySelector('h1').style.font-family = "red";
+
+// }
+
+// document.querySelector('#start').addEventListener('click',start)
+
+// const stop = function(){
+// clearTimeout(timer);
+// }
+
+// document.querySelector('#stop').
+// addEventListener('click', stop); //ye me khud se thodi practice kr rha tha 
+
+// ye page ka main kaam yha se haii
+
+const sayDate = function(str){
+console.log(str, Date.now());
+  
+}
+const intervalId = function(){
+timer = setInterval(sayDate,1000, "jatin weds riya ");
+}
+
+
+
+document.querySelector('#start').
+addEventListener('click', intervalId);
+
+const stop = function(){
+clearInterval(timer)
+console.log("timer successfully stoped");
+
+}
+
+document.querySelector('#stop').
+addEventListener('click', stop);
+
+</script>
+</html>
