@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+
+// ye approach best hai abhi yahi jada use hoti hai 
+// document.getElementById('owl').addEventListener('click', function(){
+//   alert("owl clicked again");
+// })
+
+// document.getElementById('owl').addEventListener('click', function(e){
+//   console.log(e);
+  
+// })
+
+// bubbling // capturing  ham ye jo uper fun likha hai iske end hone k pehle true ya false dete hai
+// jab true dete hai usko capturing kehte hai isme code uper se neeche run hota hai or false ko bubbling kehte 
+// bubbling me code neeche se matlab clicked event se uper ki side tak run hota hai
+
+// BUBLING 
+/*
+Event child element se parent elements ki taraf propagate hota hai.
+Example: button → div → body
+*/
+
+// document.getElementById('images').addEventListener('click', function(){
+//   console.log("clicked inside the ul");
+// }, false) // false likho ya nhi default me false hi hota hai
+
+// document.getElementById('owl').addEventListener('click', function(){
+//   console.log("owl clicked ");
+// })
+
+// is example me if we clicked on owl then first owl will be printed then ul because 
+// we applied bubbling propagation false diya hai na eventlistner me 
+
+// agar yahi true dete then capturing hota pehle ul then owl 
+// CAPTURING
+/*
+Capturing
+
+Event parent element se child element ki taraf propagate hota hai.
+Example: body → div → button
+*/
+
+// STOP PROPAGATION -->> ye jo functon hai iske andar kuch pass krdo or uske block k andar likhdo wo variable.stopPropagation();
+
+// document.getElementById('images').addEventListener('click', function(){
+//   console.log("clicked inside the ul");
+// }, false) // false likho ya nhi default me false hi hota hai
+
+// document.getElementById('owl').addEventListener('click', function(e){
+//   e.stopPropagation();
+//   console.log("owl clicked ");
+
+// })
+
+// ab agar ham chahte hai ki jese isme ek link di hai to ham uspe click kre to 
+// event to call ho lekin google open na ho to we use preventDefault() method
+
+
+// document.getElementById('google').addEventListener('click', function(e){
+//   e.preventDefault();
+//   e.stopPropagation();
+//   console.log("google clicked but not visited");
+// })
+
+
+// -------->>> we want to remove image ham jispe click kre wo remove ho jaye 
+
+// ab event listener me bahut sare methods and properties hoti hai so we just 
+// have to know about them to ek baar jao or in sab k bare me to padh hi lo 
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+  
+//   document.getElementById('images').addEventListener('click', function(e){
+
+
+//   //console.log(e.target.parentNode) // is se target ka pta chalta hai ki konsa
+//   //  event chala or parent se uska parent ata hai ki us event ka parent kon hai
+//  // to ham isko ek variable em store krke dlt kr dege parent ko hi dlt krege kyuki image parent li me hi to hai
+ 
+//  e.preventDefault();
+ 
+//  let imagedlt = e.target.parentNode;
+//  imagedlt.remove();
+// })
+
+// ab is code me ham image pe click krege to thik hai agar kahi or kiya to sab kuch
+//  delete ho jayega kyuki apan parent node ko store kr rhe hai na ab kahi bhi click
+//  krege to uska parent hai div to div k sabhi child dlt hojayege to yahan ham use
+//  krege if el or tag name ye bhi ek property hai
+
+  document.getElementById('images').addEventListener('click', function(e){
+ e.preventDefault();
+ console.log(e.target.tagName);
+ let imagedlt = e.target.parentNode;
+ if(e.target.tagName === 'IMG' || e.target.tagName === 'A'){
+  imagedlt.remove();
+ }
+})
+
+</script>
+</html>
