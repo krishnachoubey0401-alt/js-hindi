@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM | Chai or code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+
+  <div class="parent">
+    <div class="day">Monday</div>
+    <div class="day">Tuesday</div>
+    <div class="day">wednesday</div>
+    <div class="day">Thursday</div>
+  </div>
+  
+</body>
+<script>
+  const parent = document.querySelector('.parent')
+  // console.log(parent); // direct parent class mil gyi thi
+  // console.log(parent.children); // yahan hame mila hai htmlcollection direct loop nhi lgega isko ek var me store krke Array.form use krke ispe array k operation lg skte h
+
+  // console.log(parent.children[0]); // ese first element ko access kr sakte hai
+  // console.log(parent.children[0].innerHTML); 
+  // console.log(parent.innerHTML); // sab kuch ajata hai chahe koi tags hi kyu na ho
+
+//   for (let i = 0; i< parent.children.length; i++) {
+//     console.log(parent.children[i].innerHTML);
+// }
+
+  parent.children[1].style.color = "red ";
+  // console.log(parent.firstElementChild)
+  // console.log(parent.lastElementChild)
+
+  const dayOne = document.querySelector('.day')
+  // console.log(dayOne);
+  // console.log(dayOne.parentElement); // parent ko drag kr sakte hai child to parent  chale gye
+  // console.log(dayOne.nextElementSibling); //jese yahan day one me monday hai to uska sibling tuesday hai to usko print
+
+  console.log("Nodes: ", parent.childNodes); // ye poora ek tree structure hai body k andar jo bhi hai uska ek structure de dega
+
+/*
+1. const parent = document.querySelector('.parent')
+
+.parent class wala element select karke parent variable mein store karta hai.
+
+
+2. parent.children
+
+Parent ke andar ke sirf element children ko HTMLCollection ke form mein deta hai.
+
+
+3. parent.children[0]
+
+Parent ke first child element ko access karta hai.
+
+[0] → first child
+[1] → second child
+
+
+4. parent.children[0].innerHTML
+
+First child ke andar ka HTML/text return karta hai.
+
+
+5. parent.innerHTML
+
+Parent ke andar ka complete HTML return karta hai, including child elements.
+
+
+6. parent.children.length
+
+Parent ke total element children ki count deta hai.
+
+
+7. parent.children[1].style.color = "red"
+
+Second child element ka text color red karta hai.
+
+
+8. parent.firstElementChild
+
+Parent ka first element child return karta hai.
+
+
+9. parent.lastElementChild
+
+Parent ka last element child return karta hai.
+
+
+10. const dayOne = document.querySelector('.day')
+
+Pehla .day element select karke dayOne variable mein store karta hai.
+
+
+11. dayOne.parentElement
+
+Selected element ke direct parent element ko return karta hai.
+
+Child se parent ki taraf move karne ke liye use hota hai.
+
+
+12. dayOne.nextElementSibling
+
+Selected element ke next sibling element ko return karta hai.
+
+Example: Monday ke baad Tuesday hai, to Monday par ye Tuesday return karega.
+
+
+13. parent.childNodes
+
+Parent ke saare child nodes return karta hai.
+
+Isme sirf elements nahi, balki text nodes aur whitespace bhi include ho sakte hain.
+
+
+14. for (let i = 0; i < parent.children.length; i++)
+
+Parent ke saare element children par loop chalata hai.
+
+parent.children[i] se har child ko one-by-one access kar sakte hain.
+*/
+
+</script>
+</html>
