@@ -1,0 +1,79 @@
+/*
+==================== DOM (DOCUMENT OBJECT MODEL) ====================
+
+DOM = HTML document ka object-based structure.
+
+JavaScript DOM ke through:
+- HTML elements ko select kar sakte hain
+- Content change kar sakte hain
+- Attributes/style change kar sakte hain
+- New elements create/delete kar sakte hain
+
+
+==================== WINDOW & DOCUMENT ====================
+
+window → Browser ka global object
+document → Current HTML page ka DOM
+
+console.log(window);
+console.log(document);
+
+window.document === document   // true
+
+
+==================== DOM TREE ====================
+
+HTML
+ ├── HEAD
+ │    └── TITLE
+ │
+ └── BODY
+      └── DIV
+           ├── H1
+           └── P
+
+Parent   → upar wala element
+Child    → andar wala element
+Sibling  → same parent ke elements
+
+
+==================== PRACTICAL ====================
+
+// HTML:
+<h1 id="title">Hello World</h1>
+
+// Element select:
+const heading = document.getElementById("title");
+
+// Content change:
+heading.innerHTML = "Hello JavaScript";
+
+console.log(heading);
+
+
+// IMPORTANT:
+// getElementById() → id ke through element select karta hai
+// innerHTML → element ka HTML/content change karta hai
+
+
+==================== INTERVIEW ====================
+
+// Q: What is DOM?
+// A: DOM is an object-based representation of an HTML document
+//    that allows JavaScript to access and manipulate web pages.
+
+// Q: What is document?
+// A: document represents the current HTML page in the DOM.
+
+// Q: Why is DOM important?
+// A: It allows JavaScript to interact with and manipulate HTML elements.
+
+
+==================== MEMORY ====================
+
+// window → browser
+// document → webpage
+// DOM → HTML ka tree/object structure
+// getElementById() → element select
+// innerHTML → content change
+*/ 
