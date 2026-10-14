@@ -1,0 +1,174 @@
+/*
+========================================================
+                 JAVASCRIPT PROMISES
+              INTERVIEW NOTES
+========================================================
+
+Q. Promise kya hota hai?
+
+Ans:
+Promise JavaScript ka ek object hai jo kisi asynchronous
+operation ke future result ko represent karta hai.
+
+Promise ki 3 states hoti hain:
+
+1. Pending   -> operation abhi complete nahi hua
+2. Fulfilled -> operation successfully complete hua
+3. Rejected  -> operation fail ho gaya
+
+
+Q. resolve() aur reject() kya karte hain?
+
+Ans:
+resolve() Promise ko fulfilled state mein le jaata hai
+aur successful result/data pass karta hai.
+
+reject() Promise ko rejected state mein le jaata hai
+aur error pass karta hai.
+
+
+Q. then(), catch() aur finally() kya karte hain?
+
+Ans:
+
+.then()    -> Promise successfully resolve hone par chalta hai.
+.catch()   -> Promise reject hone par chalta hai.
+.finally() -> Promise resolve ho ya reject, dono cases mein chalta hai.
+
+
+Q. Promise ka basic syntax?
+*/
+
+const promise = new Promise((resolve, reject) => {
+
+    // asynchronous operation
+
+    if (/* operation successful */) {
+        resolve("Success"); // data pass kar sakte hain
+    } else {
+        reject("Error");    // error pass kar sakte hain
+    }
+});
+
+promise
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("Operation completed");
+});
+
+
+/*
+========================================================
+                    PROMISE CHAINING
+========================================================
+
+Q. Promise chaining kya hoti hai?
+
+Ans:
+Ek .then() se return hua value next .then() mein
+receive kar sakte hain. Isse multiple asynchronous
+operations ko chain kar sakte hain.
+*/
+
+promise
+    .then((data) => {
+        return data;
+    })
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+
+/*
+========================================================
+                    ASYNC / AWAIT
+========================================================
+
+Q. async/await kya hai?
+
+Ans:
+async/await Promises ko handle/consume karne ka cleaner
+aur readable syntax hai.
+
+async function ke andar await ka use karke Promise ke
+result ka wait kar sakte hain.
+
+Promise reject hone par await error throw karta hai,
+jise try/catch se handle karte hain.
+*/
+
+async function consumePromise() {
+
+    try {
+
+        const response = await promise;
+
+        console.log(response);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+}
+
+
+/*
+========================================================
+                      FETCH
+========================================================
+
+Q. fetch() kya karta hai?
+
+Ans:
+fetch() server/API se data request karne ke liye use hota hai
+aur ye ek Promise return karta hai.
+
+response.json() bhi Promise return karta hai.
+*/
+
+fetch("API_URL")
+    .then((response) => {
+
+        return response.json();
+
+    })
+    .then((data) => {
+
+        console.log(data);
+
+    })
+    .catch((error) => {
+
+        console.log(error);
+
+    });
+
+
+/*
+========================================================
+              INTERVIEW MEIN SHORT ANSWER
+========================================================
+
+"Promise is an object in JavaScript that represents the
+eventual completion or failure of an asynchronous operation.
+
+It has three states: pending, fulfilled and rejected.
+
+We handle a fulfilled Promise using .then(), rejection
+using .catch(), and cleanup using .finally().
+
+We can also consume Promises using async/await, which
+provides a cleaner and more readable syntax.
+
+fetch() is a common example because it returns a Promise."
+========================================================
+*/
